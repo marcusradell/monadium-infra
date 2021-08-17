@@ -1,0 +1,35 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  ci:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup GCP
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Auth kubernetes
+        run: |-
+          gcloud container clusters get-credentials ${{ secrets.GCP_GKE_CLUSTER }} --region ${{ secrets.GCP_REGION }}
+
+      - name: Set up Kustomize
+        run: |-
+          curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
+          chmod u+x ./kustomize
+
+      - name: Deploy
+        run: |-
+          ./kustomize build . | kubectl apply -f -
+          kubectl rollout status deployment/${{ secrets.K8S_DEPLOYMENT_NAME }}
+          kubectl get services -o wide
