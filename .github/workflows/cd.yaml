@@ -6,7 +6,7 @@ on:
       - "main"
 
 jobs:
-  ci:
+  cd:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout repo
@@ -30,6 +30,7 @@ jobs:
 
       - name: Deploy
         run: |-
+          cd k8s/base/monadium
           ./kustomize build . | kubectl apply -f -
           kubectl rollout status deployment/${{ secrets.K8S_DEPLOYMENT_NAME }}
           kubectl get services -o wide
