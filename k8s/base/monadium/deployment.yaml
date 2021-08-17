@@ -1,0 +1,19 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "monadium-deployment"
+  namespace: "default"
+  labels:
+    app: "monadium"
+spec:
+  selector:
+    matchLabels:
+      app: "monadium"
+  template:
+    metadata:
+      labels:
+        app: "monadium"
+    spec:
+      containers:
+        - image: var-image
+          name: monadium
