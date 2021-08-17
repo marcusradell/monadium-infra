@@ -30,7 +30,6 @@ jobs:
 
       - name: Deploy
         run: |-
-          cd k8s/base/monadium
-          ./kustomize build . | kubectl apply -f -
+          ./kustomize build k8s/base/monadium | kubectl apply -f -
           kubectl rollout status deployment/${{ secrets.K8S_DEPLOYMENT_NAME }}
           kubectl get services -o wide
