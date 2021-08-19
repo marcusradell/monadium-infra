@@ -8,4 +8,4 @@ kind: Kustomization
 images:
 - name: var-image
   newName: eu.gcr.io/monadium/monadium
-  newTag: e5d7195e29fe0ba860f007e5b3d5d2d01176afe3
+  newTag: 32125e241e7e63f18efa325c7e2677f03aa44cb4
