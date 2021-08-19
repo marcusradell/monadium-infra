@@ -1,9 +1,11 @@
 resources:
-- deployment.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
-- name: var-image
-  newName: eu.gcr.io/monadium/monadium
-  newTag: 5aa8d87d6203327d65af2d47d5bfd63977f7a8e9
+  - name: var-image
+    newName: eu.gcr.io/monadium/monadium
+    newTag: 5aa8d87d6203327d65af2d47d5bfd63977f7a8e9
