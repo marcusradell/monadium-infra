@@ -12,5 +12,4 @@ spec:
       targetPort: 8080
   selector:
     app: "monadium"
-  type: "LoadBalancer"
-  loadBalancerIP: ""
+  type: "NodePort"
