@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: "monadium"
-  replicas: 0
+  replicas: 1
   template:
     metadata:
       labels:
@@ -18,3 +18,14 @@ spec:
       containers:
         - image: var-image
           name: monadium
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: monadium
+                  key: db-connection-string
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: monadium
+                  key: jwt-secret
