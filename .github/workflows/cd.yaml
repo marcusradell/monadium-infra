@@ -8,7 +8,7 @@ on:
 env:
   GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-  GCP_GKE_CLUSER: monadium-cluster
+  GCP_GKE_CLUSTER: monadium-cluster
   GCP_REGION: europe-north1
   K8S_DEPLOYMENT_NAME: ${{ secrets.K8S_DEPLOYMENT_NAME }}
 
