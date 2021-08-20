@@ -5,6 +5,13 @@ on:
     branches:
       - "main"
 
+env:
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+  GCP_GKE_CLUSER: monadium-cluster
+  GCP_REGION: europe-north1
+  K8S_DEPLOYMENT_NAME: ${{ secrets.K8S_DEPLOYMENT_NAME }}
+
 jobs:
   cd:
     runs-on: ubuntu-20.04
@@ -15,13 +22,13 @@ jobs:
       - name: Setup GCP
         uses: google-github-actions/setup-gcloud@master
         with:
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ env.GCP_PROJECT_ID }}
+          service_account_key: ${{ env.GCP_SA_KEY }}
           export_default_credentials: true
 
       - name: Auth kubernetes
         run: |-
-          gcloud container clusters get-credentials ${{ secrets.GCP_GKE_CLUSTER }} --region ${{ secrets.GCP_REGION }}
+          gcloud container clusters get-credentials ${{ env.GCP_GKE_CLUSTER }} --region ${{ env.GCP_REGION }}
 
       - name: Set up Kustomize
         run: |-
@@ -31,5 +38,5 @@ jobs:
       - name: Deploy
         run: |-
           ./kustomize build k8s/base/monadium | kubectl apply -f -
-          kubectl rollout status deployment/${{ secrets.K8S_DEPLOYMENT_NAME }}
+          kubectl rollout status deployment/${{ env.K8S_DEPLOYMENT_NAME }}
           kubectl get services -o wide
