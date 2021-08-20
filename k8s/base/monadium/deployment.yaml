@@ -18,17 +18,9 @@ spec:
       containers:
         - image: var-image
           name: monadium
-          env:
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: monadium
-                  key: db-connection-string
-            - name: JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: monadium
-                  key: jwt-secret
+          envFrom:
+            - secretRef:
+              name: monadium-secret
           livenessProbe:
             httpGet:
               path: /health/live
