@@ -20,7 +20,7 @@ spec:
           name: monadium
           envFrom:
             - secretRef:
-              name: monadium-secret
+                name: monadium-secret
           livenessProbe:
             httpGet:
               path: /health/live
