@@ -28,7 +28,7 @@ jobs:
 
       - name: Auth kubernetes
         run: |-
-          gcloud container clusters get-credentials ${{ env.GCP_GKE_CLUSTER }} --region ${{ env.GCP_REGION }}
+          gcloud container clusters get-credentials $GCP_GKE_CLUSTER --region $GCP_REGION
 
       - name: Set up Kustomize
         run: |-
@@ -38,5 +38,5 @@ jobs:
       - name: Deploy
         run: |-
           ./kustomize build k8s/base/monadium | kubectl apply -f -
-          kubectl rollout status deployment/${{ env.K8S_DEPLOYMENT_NAME }}
+          kubectl rollout status deployment/$K8S_DEPLOYMENT_NAME
           kubectl get services -o wide
