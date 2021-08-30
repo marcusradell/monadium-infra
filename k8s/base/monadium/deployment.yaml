@@ -38,5 +38,5 @@ spec:
               memory: "32Mi"
               cpu: "100m"
             limits:
-              mimory: "512Mi"
-            cpu: "500m"
+              memory: "512Mi"
+              cpu: "500m"
