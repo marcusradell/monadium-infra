@@ -7,6 +7,6 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: monadium-deployment
-  minReplicas: 0
+  minReplicas: 1
   maxReplicas: 2
   targetCPUUtilizationPercentage: 80
