@@ -1,1 +1,1 @@
-gcloud compute addresses create monadium-id-address --global
+gcloud compute addresses create monadium-ip-address --global
