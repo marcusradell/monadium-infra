@@ -3,7 +3,6 @@ resources:
   - horizontal-pod-autoscaler.yaml
   - service.yaml
   - ingress.yaml
-  - compute-address.yaml
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
