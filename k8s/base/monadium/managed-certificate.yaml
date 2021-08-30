@@ -4,6 +4,4 @@ metadata:
   name: monadium-certificate
 spec:
   domains:
-    - monadium.org
-    - www.monadium.org
     - api.monadium.org
