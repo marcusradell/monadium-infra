@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: "monadium"
-  replicas: 0
+  replicas: 1
   template:
     metadata:
       labels:
@@ -33,3 +33,10 @@ spec:
               port: 8080
             initialDelaySeconds: 5
             periodSeconds: 5
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "100m"
+            limits:
+              mimory: "512Mi"
+            cpu: "500m"
